@@ -8,13 +8,14 @@ Design and implement “Word of Wisdom” tcp server.
 
 ## Hashcash
 I used Hashcash as a proof of work algorithm
-![Hashcash](https://en.wikipedia.org/wiki/Hashcash)
+[Hashcash](https://en.wikipedia.org/wiki/Hashcash)
 
-I think Hashcash is more simple to implement than others like-Merkle Tree
+I think Hashcash is more simple to implement than others like - `Merkle Tree`
 
 It uses `version:zero_count:timestamp:resource::rand:counter` as an input of hash
-Hashcash is validated when the leading zero count is enough.
-I used SHA256 to create hash.
+
+Hashcash is validated when the `leading zero count` is enough.
+I used `SHA256` to create hash.
 ## Challenge-response
 Following `Challenge-response` protocol, I defined the message type like below
 1. RequestService - Ask server to send initial hashcash,
@@ -45,12 +46,12 @@ You can add max tries
 MAX_TRIES=100000 ./target/release/client
 ```
 ##  Docker Image
-I've created only one image named as `tcp_pow_server` for both of server and client.
-The server and client will use the same image but different bash command
-The server service automatically start right after the image is built annnnnd it restarts when it's faild to run
-The client service doesn't start automatically
-The server will bind any incoming ip addresses and he client will connect to the server address directly.
-As ev variables, we can set `ZERO_COUNT` for server and `MAX_TRIES` for `client`
+- I've created only one image named as `tcp_pow_server` for both of `server` and `client`.
+- The `server` and `client` will use the same image but different bash command.
+- The `server` service automatically start right after the image is built and it restarts when it's faild to run.
+- The client service doesn't start automatically and tit can be run manually
+- The `server` will bind any incoming ip addresses and he client will connect to the server address directly.
+- As env variables, we can set `ZERO_COUNT` for `server` and `MAX_TRIES` for `client`
 ##  How to run with docker
 
 ```
