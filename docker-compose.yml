@@ -1,0 +1,22 @@
+version: "3.8"
+
+x-defaults: &def_image
+  image: tcp_pow_server
+
+services:
+  server:
+    <<: *def_image
+    build: .
+    restart: on-failure
+    environment:
+      HOST: 0.0.0.0
+      ZERO_COUNT:
+
+  client:
+    <<: *def_image
+    depends_on:
+     - server
+    command: ["client"]
+    environment:
+      HOST: server
+      MAX_TRIES:
